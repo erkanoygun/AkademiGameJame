@@ -14,9 +14,10 @@ public class AkademiFollow : MonoBehaviour
         IsDevril= false;
         _animator = GetComponent<Animator>();//caching
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position += transform.forward * runingAkademi * Time.deltaTime;
+        transform.position += transform.forward * runingAkademi * Time.fixedDeltaTime;
+
     }
     private void OnTriggerEnter(Collider other)
     {
