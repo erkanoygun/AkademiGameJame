@@ -28,6 +28,8 @@ public class Doors : MonoBehaviour
                 if (characterManagerScript.isHammer)
                 {
                     explosionScript.explode();
+                    characterManagerScript.isHammer = false;
+
                 }
                 else
                 {

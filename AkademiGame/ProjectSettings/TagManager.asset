@@ -7,6 +7,9 @@ TagManager:
   - RightDoor
   - FalseDoor
   - Hammer
+  - Akademi
+  - Coursera
+  - Slack
   layers:
   - Default
   - TransparentFX

@@ -8,9 +8,12 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private List<GameObject> spawnGameObjects;
     public bool isHammer = false;
     int selectObjectIndex = 0;
+    public float forceback;
+    Rigidbody _rigidbody;
     void Start()
     {
         controllerScript = GetComponent<CharacterController>();
+        _rigidbody= GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -21,14 +24,22 @@ public class CharacterManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
+        //if (collision.gameObject.CompareTag("Slack"))
+        //{
+        //    Destroy(collision.gameObject);
+        //    TotalScores.TotalSlack ++;
+        //}
 
         if (collision.gameObject.CompareTag("FalseDoor"))
         {
             //Destroy(collision.gameObject);
             if (!isHammer)
             {
-                controllerScript.speed = 0.05f;
-                StartCoroutine("BackSpeed");
+                _rigidbody.AddForce(transform.forward * -1 * forceback);
+                
+                //StartCoroutine("BackSpeed");
+                //bu kýsmý force ile yapmýþ oldum
             }
             
         }
@@ -50,11 +61,11 @@ public class CharacterManager : MonoBehaviour
         Debug.Log("Here");
     }*/
 
-    IEnumerator BackSpeed()
-    {
-        yield return new WaitForSeconds(3f);
-        controllerScript.speed = 2f;
-    }
+    //IEnumerator BackSpeed()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    controllerScript.runingspeed = 2f;
+    //}
     IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(1f);
