@@ -11,13 +11,16 @@ public class Doors : MonoBehaviour
     CharacterManager characterManagerScript;
     GameObject Character;
 
+    private GameObject _UICanvas;
     private GameObject _InGameCanvas;
-    private GameObject _hammerImg;
+    private GameObject _HamerImage;
     void Start()
     {
 
-        //_InGameCanvas = GameObject.Find("UICanvas");
-        //_hammerImg = _InGameCanvas.transform.GetChild(3).gameObject;
+        _UICanvas = GameObject.Find("UICanvas");
+        _InGameCanvas = _UICanvas.transform.GetChild(3).gameObject;
+        _HamerImage = _InGameCanvas.transform.GetChild(9).gameObject;
+
         explosionScript = GetComponent<Explosion>();
         animator = GetComponentInParent<Animator>();
         Character = GameObject.Find("Character");
@@ -36,7 +39,7 @@ public class Doors : MonoBehaviour
                 {
                     explosionScript.explode();
                     characterManagerScript.isHammer = false;
-                   // _hammerImg.SetActive(false);
+                    _HamerImage.SetActive(false);
 
                 }
                 else
