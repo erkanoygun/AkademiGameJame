@@ -12,6 +12,7 @@ TagManager:
   - Slack
   - Light
   - "At\u0131l"
+  - Doors
   layers:
   - Default
   - TransparentFX

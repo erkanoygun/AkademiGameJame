@@ -1,46 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class CharacterManager : MonoBehaviour
 {
     CharacterController controllerScript;
     //[SerializeField] private List<GameObject> spawnGameObjects;
     public bool isHammer = false;
-    public bool isAtil = false;
-    int selectObjectIndex = 0;
+    public bool isAtil;
+    public bool isFinish = false;
     public float forceback;
+
+    private int Cpoint = 0;
+    private int Spoint = 0;
     Rigidbody _rigidbody;
+
+    [Header("UI References")]
+    [SerializeField] private TextMeshProUGUI _cpointtext;
+    [SerializeField] private TextMeshProUGUI _spointtext;
+    
     void Start()
     {
         controllerScript = GetComponent<CharacterController>();
         _rigidbody= GetComponent<Rigidbody>();
+        isAtil = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
         
-        //if (collision.gameObject.CompareTag("Slack"))
-        //{
-        //    Destroy(collision.gameObject);
-        //    TotalScores.TotalSlack ++;
-        //}
 
         if (collision.gameObject.CompareTag("FalseDoor"))
         {
-            //Destroy(collision.gameObject);
             if (!isHammer)
             {
                 _rigidbody.AddForce(transform.forward * -1 * forceback);
-                
-                //StartCoroutine("BackSpeed");
-                //bu kýsmý force ile yapmýþ oldum
             }
             
         }
@@ -54,21 +50,28 @@ public class CharacterManager : MonoBehaviour
             //StartCoroutine("SpawnObject");
 
         }
-        if (collision.gameObject.CompareTag("Atýl"))
-        {
-            isAtil = true;
-            StartCoroutine("SpawnObject");
-
-        }
     }
 
     
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Light"))
+        
+        if (other.gameObject.CompareTag("Finish"))
         {
-            Debug.Log("Here");
+            isFinish = true;
+        }
+        if (other.gameObject.CompareTag("Coursera"))
+        {
+            Cpoint += 1;
+            _cpointtext.text = Cpoint.ToString() + "/6";
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Slack"))
+        {
+            Spoint += 1;
+            _spointtext.text = Spoint.ToString() + "/10";
+            Destroy(other.gameObject);
         }
     }
 
