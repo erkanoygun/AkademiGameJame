@@ -5,8 +5,9 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     CharacterController controllerScript;
-    [SerializeField] private List<GameObject> spawnGameObjects;
+    //[SerializeField] private List<GameObject> spawnGameObjects;
     public bool isHammer = false;
+    public bool isAtil = false;
     int selectObjectIndex = 0;
     public float forceback;
     Rigidbody _rigidbody;
@@ -50,16 +51,26 @@ public class CharacterManager : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("RightDoor"))
         {
-            Debug.Log("Here");
+            //StartCoroutine("SpawnObject");
+
+        }
+        if (collision.gameObject.CompareTag("Atýl"))
+        {
+            isAtil = true;
             StartCoroutine("SpawnObject");
 
         }
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    
+
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Here");
-    }*/
+        if (other.gameObject.CompareTag("Light"))
+        {
+            Debug.Log("Here");
+        }
+    }
 
     //IEnumerator BackSpeed()
     //{
@@ -69,7 +80,7 @@ public class CharacterManager : MonoBehaviour
     IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(1f);
-        spawnGameObjects[selectObjectIndex].SetActive(true);
-        selectObjectIndex += 1;
+        //spawnGameObjects[selectObjectIndex].SetActive(true);
+        //selectObjectIndex += 1;
     }
 }

@@ -10,6 +10,8 @@ TagManager:
   - Akademi
   - Coursera
   - Slack
+  - Light
+  - "At\u0131l"
   layers:
   - Default
   - TransparentFX
