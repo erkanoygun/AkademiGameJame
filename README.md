@@ -9,6 +9,9 @@ Akademi Runner oyunu 2023 Donemi Google Oyun Uygulama Akademisi Game-Jam kapsamÄ
 - https://emaceart.itch.io/free-low-poly-meadows
 - https://alstrainfinite.itch.io/doors
 
+## Character Animation and Model
+- https://www.mixamo.com
+
 ## Model Design
 - ProBuilder in Unity
 
